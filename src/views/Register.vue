@@ -7,7 +7,10 @@
           <p class="text-xs-center">
             <router-link :to="{name: 'login'}">Need an account?</router-link>
           </p>
-          VALIDATIONS ERRORS
+          <mbv-validation-errors
+            v-if="validationErrors"
+            :validationErrors="validationErrors"
+          />
           <form @submit.prevent="onSubmit">
             <fieldset class="form-group">
               <input
@@ -47,8 +50,12 @@
 </template>
 
 <script>
+import MbvValidationErrors from '@/components/ValidationErrors'
 export default {
-  name: 'MbcRegister',
+  name: 'MbvRegister',
+  components: {
+    MbvValidationErrors
+  },
   data() {
     return {
       email: '',
@@ -59,6 +66,9 @@ export default {
   computed: {
     isSubmitting() {
       return this.$store.state.auth.isSubmitting
+    },
+    validationErrors() {
+      return this.$store.state.auth.validationErrors
     }
   },
   methods: {
