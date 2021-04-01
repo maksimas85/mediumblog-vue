@@ -51,6 +51,8 @@
 
 <script>
 import MbvValidationErrors from '@/components/ValidationErrors'
+import {actionsTypes} from '@/store/modules/auth'
+
 export default {
   name: 'MbvRegister',
   components: {
@@ -73,9 +75,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      // console.log('onSubmit')
       this.$store
-        .dispatch('register', {
+        .dispatch(actionsTypes.register, {
           email: this.email,
           username: this.username,
           password: this.password

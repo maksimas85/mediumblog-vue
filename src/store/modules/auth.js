@@ -8,38 +8,51 @@ const state = {
   isLoggedIn: null
 }
 
+export const mutationsTypes = {
+  registerStart: '[auth] registerStart',
+  registerSuccess: '[auth] registerSuccess',
+  registerFailure: '[auth] registerFailure'
+}
+
 const mutations = {
-  registerStart(state) {
+  [mutationsTypes.registerStart](state) {
     state.isSubmitting = true
     state.validationErrors = null // сбрасываем ошибки валидации при прошлой попытке зарегистрироваться/войти
   },
-  registerSuccess(state, payload) {
+  [mutationsTypes.registerSuccess](state, payload) {
     state.isSubmitting = false
     // payload - наш ответ с сервера (наш пользователь)
     state.currentUser = payload
     state.isLoggedIn = true // залогинены успешно
   },
-  registerFailure(state, payload) {
+  [mutationsTypes.registerFailure](state, payload) {
     state.isSubmitting = false
     state.validationErrors = payload // записываем ошибки
   }
 }
 
+export const actionsTypes = {
+  register: '[auth] register'
+}
+
 // Используем Promise так как в нашем компоненте требуется среагировать на action. (.then in onSubmit/Register.vue)
 const actions = {
-  register(context, credentials) {
+  [actionsTypes.register](context, credentials) {
     // context - this.$store
     return new Promise(resolve => {
-      context.commit('registerStart')
+      context.commit(mutationsTypes.registerStart)
       authApi
         .register(credentials)
         .then(res => {
-          context.commit('registerSuccess', res.data.user)
+          context.commit(mutationsTypes.registerSuccess, res.data.user)
           setItem('accessToken', res.data.user.token)
           resolve(res.data.user)
         })
         .catch(result => {
-          context.commit('registerFailure', result.response.data.errors)
+          context.commit(
+            mutationsTypes.registerFailure,
+            result.response.data.errors
+          )
         })
     })
   }
