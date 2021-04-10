@@ -1,6 +1,17 @@
 <template>
   <div id="app">
-    <h1>Name Project</h1>
-    <router-view></router-view>
+    <mbv-top-bar />
+    <router-view />
   </div>
 </template>
+
+<script>
+import MbvTopBar from '@/components/TopBar'
+
+export default {
+  name: 'MbvApp',
+  components: {
+    MbvTopBar
+  }
+}
+</script>
