@@ -8,10 +8,18 @@ const state = {
   isLoggedIn: null
 }
 
+export const actionsTypes = {
+  register: '[auth] register',
+  login: '[auth] login'
+}
+
 export const mutationsTypes = {
   registerStart: '[auth] registerStart',
   registerSuccess: '[auth] registerSuccess',
-  registerFailure: '[auth] registerFailure'
+  registerFailure: '[auth] registerFailure',
+  loginStart: '[auth] loginStart',
+  loginSuccess: '[auth] loginSuccess',
+  loginFailure: '[auth] loginFailure'
 }
 
 const mutations = {
@@ -28,11 +36,20 @@ const mutations = {
   [mutationsTypes.registerFailure](state, payload) {
     state.isSubmitting = false
     state.validationErrors = payload // записываем ошибки
+  },
+  [mutationsTypes.loginStart](state) {
+    state.isSubmitting = true
+    state.validationErrors = null
+  },
+  [mutationsTypes.loginSuccess](state, payload) {
+    state.isSubmitting = false
+    state.currentUser = payload
+    state.isLoggedIn = true
+  },
+  [mutationsTypes.loginFailure](state, payload) {
+    state.isSubmitting = false
+    state.validationErrors = payload
   }
-}
-
-export const actionsTypes = {
-  register: '[auth] register'
 }
 
 // Используем Promise так как в нашем компоненте требуется среагировать на action. (.then in onSubmit/Register.vue)
@@ -51,6 +68,24 @@ const actions = {
         .catch(result => {
           context.commit(
             mutationsTypes.registerFailure,
+            result.response.data.errors
+          )
+        })
+    })
+  },
+  [actionsTypes.login](context, credentials) {
+    return new Promise(resolve => {
+      context.commit(mutationsTypes.loginStart)
+      authApi
+        .login(credentials)
+        .then(res => {
+          context.commit(mutationsTypes.loginSuccess, res.data.user)
+          setItem('accessToken', res.data.user.token)
+          resolve(res.data.user)
+        })
+        .catch(result => {
+          context.commit(
+            mutationsTypes.loginFailure,
             result.response.data.errors
           )
         })
