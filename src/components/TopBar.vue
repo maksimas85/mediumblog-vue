@@ -77,10 +77,6 @@ import {mapGetters} from 'vuex'
 export default {
   name: 'MbvTopBar',
   computed: {
-    // ...mapState({
-    //   currentUser: state => state.auth.currentUser,
-    //   isLoggedIn: state => state.auth.isLoggedIn
-    // }),
     ...mapGetters({
       currentUser: getterTypes.currentUser,
       isLoggedIn: getterTypes.isLoggedIn,

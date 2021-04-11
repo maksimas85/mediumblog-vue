@@ -7,11 +7,15 @@
 
 <script>
 import MbvTopBar from '@/components/TopBar'
+import {actionsTypes} from '@/store/modules/auth'
 
 export default {
   name: 'MbvApp',
   components: {
     MbvTopBar
+  },
+  mounted() {
+    this.$store.dispatch(actionsTypes.getCurrentUser)
   }
 }
 </script>
