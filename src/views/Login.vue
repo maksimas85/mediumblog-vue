@@ -44,7 +44,7 @@
 <script>
 import {mapState} from 'vuex'
 import MbvValidationErrors from '@/components/ValidationErrors'
-import {actionsTypes} from '@/store/modules/auth'
+import {actionsTypes} from '@/store/types/auth'
 
 export default {
   name: 'MbvLogin',
@@ -78,7 +78,7 @@ export default {
         })
         .then(() => {
           //редирект на главную страницу по name
-          this.$router.push({name: 'home'})
+          this.$router.push({name: 'globalFeed'})
         })
     }
   }

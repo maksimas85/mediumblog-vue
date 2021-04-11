@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar navbar-light">
     <div class="container">
-      <router-link class="navbar-brand" :to="{name: 'home'}">
+      <router-link class="navbar-brand" :to="{name: 'globalFeed'}">
         MediumClone
       </router-link>
       <ul class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
           <router-link
             class="nav-link"
-            :to="{name: 'home'}"
+            :to="{name: 'globalFeed'}"
             active-class="active"
             exact
           >
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import {getterTypes} from '@/store/modules/auth'
+import {getterTypes} from '@/store/types/auth'
 import {mapGetters} from 'vuex'
 export default {
   name: 'MbvTopBar',

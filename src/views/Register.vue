@@ -52,7 +52,7 @@
 <script>
 import {mapState} from 'vuex'
 import MbvValidationErrors from '@/components/ValidationErrors'
-import {actionsTypes} from '@/store/modules/auth'
+import {actionsTypes} from '@/store/types/auth'
 
 export default {
   name: 'MbvRegister',
@@ -89,7 +89,7 @@ export default {
         .then(user => {
           console.log('successfully register user', user)
           //редирект на главную страницу по name
-          this.$router.push({name: 'home'})
+          this.$router.push({name: 'globalFeed'})
         })
     }
   }

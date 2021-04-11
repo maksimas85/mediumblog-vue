@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Register from '@/views/Register'
-import Home from '@/views/Home'
+import GlobalFeed from '@/views/GlobalFeed'
 import Login from '@/views/Login'
 
 Vue.use(VueRouter)
@@ -10,8 +10,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'globalFeed',
+    component: GlobalFeed
   },
   {
     path: '/register',

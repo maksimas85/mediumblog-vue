@@ -7,7 +7,7 @@
 
 <script>
 import MbvTopBar from '@/components/TopBar'
-import {actionsTypes} from '@/store/modules/auth'
+import {actionsTypes} from '@/store/types/auth'
 
 export default {
   name: 'MbvApp',
