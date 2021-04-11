@@ -1,5 +1,6 @@
 import authApi from '@/api/auth'
 import {setItem} from '@/helpers/persistanceStorage'
+import {actionsTypes, getterTypes, mutationsTypes} from '@/store/types/auth'
 
 const state = {
   isSubmitting: false,
@@ -7,32 +8,6 @@ const state = {
   validationErrors: null,
   isLoggedIn: null,
   isLoading: false
-}
-
-export const actionsTypes = {
-  register: '[auth] register',
-  login: '[auth] login',
-  getCurrentUser: '[] getCurrentUser'
-}
-
-export const getterTypes = {
-  currentUser: '[auth] currentUser',
-  isLoggedIn: '[auth] isLoggedIn',
-  isAnonymous: '[auth] isAnonymous'
-}
-
-export const mutationsTypes = {
-  registerStart: '[auth] registerStart',
-  registerSuccess: '[auth] registerSuccess',
-  registerFailure: '[auth] registerFailure',
-
-  loginStart: '[auth] loginStart',
-  loginSuccess: '[auth] loginSuccess',
-  loginFailure: '[auth] loginFailure',
-
-  getCurrentUserStart: '[auth] getCurrentUserStart',
-  getCurrentUserSuccess: '[auth] getCurrentUserSuccess',
-  getCurrentUserFailure: '[auth] getCurrentUserFailure'
 }
 
 // Используем Promise так как в нашем компоненте требуется среагировать на action. (.then in onSubmit/Register.vue)
