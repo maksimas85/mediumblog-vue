@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    BANNER
+    <mbv-banner />
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
@@ -17,12 +17,14 @@
 <script>
 import MbvFeed from '@/components/Feed'
 import MbvPopularTags from '@/components/PopularTags'
+import MbvBanner from '@/components/Banner'
 
 export default {
   name: 'MbvGlobalFeed',
   components: {
     MbvFeed,
-    MbvPopularTags
+    MbvPopularTags,
+    MbvBanner
   },
   data() {
     return {
