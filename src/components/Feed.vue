@@ -41,10 +41,10 @@
         </router-link>
       </div>
       <mbv-pagination
-        :total="total"
+        :total="feed.articlesCount"
         :limit="limit"
         :current-page="currentPage"
-        :url="url"
+        :url="baseURL"
       />
     </div>
   </div>
@@ -54,6 +54,7 @@
 import {mapState} from 'vuex'
 import {actionTypes} from '@/store/types/feed'
 import MbvPagination from '@/components/Pagination'
+import {limit} from '@/helpers/vars'
 
 export default {
   name: 'MbvFeed',
@@ -68,10 +69,7 @@ export default {
   },
   data() {
     return {
-      total: 500,
-      limit: 10,
-      currentPage: 5,
-      url: '/tags/dragons'
+      limit
     }
   },
   computed: {
@@ -79,10 +77,26 @@ export default {
       isLoading: state => state.feed.isLoading,
       feed: state => state.feed.data,
       error: state => state.feed.error
-    })
+    }),
+    currentPage() {
+      return Number(this.$route.query.page || '1')
+    },
+    baseURL() {
+      return this.$route.path
+    }
+  },
+  watch: {
+    currentPage() {
+      this.fetchFeed()
+    }
   },
   mounted() {
-    this.$store.dispatch(actionTypes.getFeed, {apiURL: this.apiURL})
+    this.fetchFeed()
+  },
+  methods: {
+    fetchFeed() {
+      this.$store.dispatch(actionTypes.getFeed, {apiURL: this.apiURL})
+    }
   }
 }
 </script>
