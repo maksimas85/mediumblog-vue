@@ -55,6 +55,7 @@ import {mapState} from 'vuex'
 import {actionTypes} from '@/store/types/feed'
 import MbvPagination from '@/components/Pagination'
 import {limit} from '@/helpers/vars'
+import {stringify, parseUrl} from 'query-string'
 
 export default {
   name: 'MbvFeed',
@@ -83,6 +84,9 @@ export default {
     },
     baseURL() {
       return this.$route.path
+    },
+    offset() {
+      return this.currentPage * limit - limit
     }
   },
   watch: {
@@ -95,7 +99,14 @@ export default {
   },
   methods: {
     fetchFeed() {
-      this.$store.dispatch(actionTypes.getFeed, {apiURL: this.apiURL})
+      const parsedUrl = parseUrl(this.apiURL)
+      const stringParams = stringify({
+        limit,
+        offset: this.offset,
+        ...parsedUrl.query
+      })
+      const apiURLWithParams = `${parsedUrl.url}?${stringParams}`
+      this.$store.dispatch(actionTypes.getFeed, {apiURL: apiURLWithParams})
     }
   }
 }
