@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="isLoading">Loading</div>
+    <mbv-loading v-if="isLoading" />
     <div v-if="error">Error</div>
     <div v-if="feed">
       <div
@@ -56,6 +56,7 @@ import {actionTypes} from '@/store/types/feed'
 import MbvPagination from '@/components/Pagination'
 import {limit} from '@/helpers/vars'
 import {stringify, parseUrl} from 'query-string'
+import MbvLoading from '@/components/Loading'
 
 export default {
   name: 'MbvFeed',
@@ -66,7 +67,8 @@ export default {
     }
   },
   components: {
-    MbvPagination
+    MbvPagination,
+    MbvLoading
   },
   data() {
     return {
