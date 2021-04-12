@@ -1,8 +1,9 @@
 <template>
-  <div>PAGINATION!!!</div>
+  <div>PAGINATION!!!{{pages}}</div>
 </template>
 
 <script>
+import {range} from '@/helpers/utils'
 export default {
   name: 'MbvPagination',
   props: {
@@ -25,8 +26,8 @@ export default {
   },
   computed: {
     pages() {
-      const pagesCount = Math.ceil(this.total/this.limit)
-      return [1,2,3,4,5]
+      const pagesCount = Math.ceil(this.total / this.limit)
+      return range(1, pagesCount)
     }
   }
 }
