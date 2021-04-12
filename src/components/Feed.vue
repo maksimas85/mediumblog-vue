@@ -40,7 +40,12 @@
           TAG LIST
         </router-link>
       </div>
-      PAGINATION
+      <mbv-pagination
+        :total="total"
+        :limit="limit"
+        :current-page="currentPage"
+        :url="url"
+      />
     </div>
   </div>
 </template>
@@ -48,6 +53,7 @@
 <script>
 import {mapState} from 'vuex'
 import {actionTypes} from '@/store/types/feed'
+import MbvPagination from '@/components/Pagination'
 
 export default {
   name: 'MbvFeed',
@@ -55,6 +61,17 @@ export default {
     apiURL: {
       type: String,
       required: true
+    }
+  },
+  components: {
+    MbvPagination
+  },
+  data() {
+    return {
+      total: 500,
+      limit: 10,
+      currentPage: 5,
+      url: '/tags/dragons'
     }
   },
   computed: {
