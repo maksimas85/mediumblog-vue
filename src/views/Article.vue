@@ -45,7 +45,7 @@
           <div>
             <p>{{ article.body }}</p>
           </div>
-          <mbv-tag-list />
+          <mbv-tag-list :tags="article.tagList" />
         </div>
       </div>
     </div>
