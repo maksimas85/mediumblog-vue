@@ -24,7 +24,7 @@ const mutations = {
 const actions = {
   [actionTypes.getArticle](context, {slug}) {
     return new Promise(resolve => {
-      context.commit(mutationTypes.getArticleStart)
+      context.commit(mutationTypes.getArticleStart, slug)
       articleApi
         .getArticle(slug)
         .then(article => {
