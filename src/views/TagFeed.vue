@@ -4,6 +4,7 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
+          <mbv-feed-toggle :tag-name="tagName" />
           <mbv-feed :apiURL="apiURL" />
         </div>
         <div class="col-md-3">
@@ -18,18 +19,22 @@
 import MbvFeed from '@/components/Feed'
 import MbvPopularTags from '@/components/PopularTags'
 import MbvBanner from '@/components/Banner'
+import MbvFeedToggle from '@/components/FeedToggle'
 
 export default {
   name: 'MbvTagFeed',
   components: {
     MbvFeed,
     MbvPopularTags,
-    MbvBanner
+    MbvBanner,
+    MbvFeedToggle
   },
   computed: {
+    tagName() {
+      return this.$route.params.slug
+    },
     apiURL() {
-      const tagName = this.$route.params.slug
-      return `articles?tag=${tagName}`
+      return `articles?tag=${this.tagName}`
     }
   }
 }

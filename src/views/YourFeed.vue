@@ -4,6 +4,7 @@
     <div class="container page">
       <div class="row">
         <div class="col-md-9">
+          <mbv-feed-toggle />
           <mbv-feed :apiURL="apiURL" />
         </div>
         <div class="col-md-3">
@@ -18,13 +19,15 @@
 import MbvFeed from '@/components/Feed'
 import MbvPopularTags from '@/components/PopularTags'
 import MbvBanner from '@/components/Banner'
+import MbvFeedToggle from '@/components/FeedToggle'
 
 export default {
   name: 'MbvYourFeed',
   components: {
     MbvFeed,
     MbvPopularTags,
-    MbvBanner
+    MbvBanner,
+    MbvFeedToggle
   },
   data() {
     return {
