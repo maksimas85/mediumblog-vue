@@ -89,7 +89,7 @@ export default {
         title: this.title,
         description: this.description,
         body: this.body,
-        tagList: this.tagList
+        tagList: this.tagList.split(' ')
       }
       this.$emit('articleSubmit', form)
     }
