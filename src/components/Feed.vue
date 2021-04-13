@@ -37,7 +37,7 @@
           <h1>{{ article.title }}</h1>
           <p>{{ article.description }}</p>
           <span>Read more...</span>
-          TAG LIST
+          <mbv-tag-list :tags="article.tagList" />
         </router-link>
       </div>
       <mbv-pagination
@@ -58,6 +58,7 @@ import {limit} from '@/helpers/vars'
 import {stringify, parseUrl} from 'query-string'
 import MbvLoading from '@/components/Loading'
 import MbvErrorMessage from '@/components/ErrorMessage'
+import MbvTagList from '@/components/TagList'
 
 export default {
   name: 'MbvFeed',
@@ -70,7 +71,8 @@ export default {
   components: {
     MbvPagination,
     MbvLoading,
-    MbvErrorMessage
+    MbvErrorMessage,
+    MbvTagList
   },
   data() {
     return {

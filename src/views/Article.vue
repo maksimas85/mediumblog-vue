@@ -45,7 +45,7 @@
           <div>
             <p>{{ article.body }}</p>
           </div>
-          TAG LIST
+          <mbv-tag-list />
         </div>
       </div>
     </div>
@@ -53,17 +53,19 @@
 </template>
 
 <script>
+import {mapState, mapGetters} from 'vuex'
 import {actionTypes as articleActionTypes} from '@/store/types/article'
 import {getterTypes as authGetterTypes} from '@/store/types/auth'
-import {mapState, mapGetters} from 'vuex'
 import MbvErrorMessage from '@/components/ErrorMessage'
 import MbvLoading from '@/components/Loading'
+import MbvTagList from '@/components/TagList'
 
 export default {
   name: 'MbvArticle',
   components: {
     MbvErrorMessage,
-    MbvLoading
+    MbvLoading,
+    MbvTagList
   },
   computed: {
     ...mapState({
