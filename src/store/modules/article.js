@@ -18,7 +18,10 @@ const mutations = {
   },
   [mutationTypes.getArticleFailure](state) {
     state.isLoading = false
-  }
+  },
+  [mutationTypes.deleteArticleStart]() {},
+  [mutationTypes.deleteArticleSuccess]() {},
+  [mutationTypes.deleteArticleFailure]() {}
 }
 
 const actions = {
@@ -33,6 +36,20 @@ const actions = {
         })
         .catch(() => {
           context.commit(mutationTypes.getArticleFailure)
+        })
+    })
+  },
+  [actionTypes.deleteArticle](context, {slug}) {
+    return new Promise(resolve => {
+      context.commit(mutationTypes.deleteArticleStart, slug)
+      articleApi
+        .deleteArticle(slug)
+        .then(() => {
+          context.commit(mutationTypes.deleteArticleSuccess)
+          resolve()
+        })
+        .catch(() => {
+          context.commit(mutationTypes.deleteArticleFailure)
         })
     })
   }
