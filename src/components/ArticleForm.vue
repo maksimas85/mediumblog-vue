@@ -3,7 +3,7 @@
     <div class="container pag">
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
-          <mbv-validation-errors v-if="errors" />
+          <mbv-validation-errors v-if="errors" :validation-errors="errors" />
           <form @submit.prevent="onSubmit">
             <fieldset>
               <fieldset class="form-group">
