@@ -11,8 +11,13 @@
 </template>
 
 <script>
+import MbvArticleForm from '@/components/ArticleForm'
+
 export default {
   name: 'MbvCreateArticle',
+  components: {
+    MbvArticleForm
+  },
   data() {
     return {
       initialValues: {
