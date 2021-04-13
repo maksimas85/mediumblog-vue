@@ -1,7 +1,7 @@
 <template>
   <div>
     <mbv-loading v-if="isLoading" />
-    <div v-if="error">Something bad happened</div>
+    <mbv-error-message v-if="error" />
     <div class="sidebar" v-if="popularTags">
       <p>Popular Tags</p>
       <div class="tag-list">
@@ -22,11 +22,13 @@
 import {mapState} from 'vuex'
 import {actionTypes} from '@/store/types/popularTags'
 import MbvLoading from '@/components/Loading'
+import MbvErrorMessage from '@/components/ErrorMessage'
 
 export default {
   name: 'MbvPopularTags',
   components: {
-    MbvLoading
+    MbvLoading,
+    MbvErrorMessage
   },
   computed: {
     ...mapState({

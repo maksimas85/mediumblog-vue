@@ -1,7 +1,7 @@
 <template>
   <div>
     <mbv-loading v-if="isLoading" />
-    <div v-if="error">Error</div>
+    <mbv-error-message v-if="error" />
     <div v-if="feed">
       <div
         class="article-preview"
@@ -57,6 +57,7 @@ import MbvPagination from '@/components/Pagination'
 import {limit} from '@/helpers/vars'
 import {stringify, parseUrl} from 'query-string'
 import MbvLoading from '@/components/Loading'
+import MbvErrorMessage from '@/components/ErrorMessage'
 
 export default {
   name: 'MbvFeed',
@@ -68,7 +69,8 @@ export default {
   },
   components: {
     MbvPagination,
-    MbvLoading
+    MbvLoading,
+    MbvErrorMessage
   },
   data() {
     return {
