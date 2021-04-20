@@ -13,9 +13,7 @@ const getCurrentUser = () => {
 }
 
 const updateCurrentUser = currentUserInput => {
-  return axios
-    .put('/user', {user: currentUserInput})
-    .then(res => res.data.user)
+  return axios.put('/user', {user: currentUserInput}).then(res => res.data.user)
 }
 
 export default {
