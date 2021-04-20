@@ -68,7 +68,12 @@ const mutations = {
   [mutationsTypes.updateCurrentUserSuccess](state, payload) {
     state.currentUser = payload
   },
-  [mutationsTypes.updateCurrentUserFailure]() {}
+  [mutationsTypes.updateCurrentUserFailure]() {},
+
+  [mutationsTypes.logout](state) {
+    state.currentUser = null
+    state.isLoggedIn = false
+  }
 }
 
 // Используем Promise так как в нашем компоненте требуется среагировать на action. (.then in onSubmit/Register.vue)
@@ -139,6 +144,13 @@ const actions = {
             result.response.data.errors
           )
         })
+    })
+  },
+  [actionsTypes.logout](context) {
+    return new Promise(resolve => {
+      setItem('accessToken', '')
+      context.commit(mutationsTypes.logout)
+      resolve()
     })
   }
 }
