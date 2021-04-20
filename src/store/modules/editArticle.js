@@ -23,7 +23,7 @@ const mutations = {
     state.isLoading = true
   },
   [mutationTypes.getArticleSuccess](state, payload) {
-    state.isLoading = true
+    state.isLoading = false
     state.article = payload
   },
   [mutationTypes.getArticleFailure](state) {
