@@ -1,7 +1,8 @@
 export const actionsTypes = {
   register: '[auth] register',
   login: '[auth] login',
-  getCurrentUser: '[] getCurrentUser'
+  getCurrentUser: '[auth] getCurrentUser',
+  updateCurrentUser: '[auth] updateCurrentUser'
 }
 
 export const getterTypes = {
@@ -21,5 +22,9 @@ export const mutationsTypes = {
 
   getCurrentUserStart: '[auth] getCurrentUserStart',
   getCurrentUserSuccess: '[auth] getCurrentUserSuccess',
-  getCurrentUserFailure: '[auth] getCurrentUserFailure'
+  getCurrentUserFailure: '[auth] getCurrentUserFailure',
+
+  updateCurrentUserStart: '[auth] updateCurrentUserStart',
+  updateCurrentUserSuccess: '[auth] updateCurrentUserSuccess',
+  updateCurrentUserFailure: '[auth] updateCurrentUserFailure'
 }
