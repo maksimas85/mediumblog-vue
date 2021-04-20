@@ -28,7 +28,13 @@
               {{ article.createdAt }}
             </span>
           </div>
-          <div class="pull-xs-right">ADD TO FAVORITES</div>
+          <div class="pull-xs-right">
+            <mbv-add-to-favorites
+              :is-favorited="article.favorited"
+              :article-slug="article.slug"
+              :favorites-count="article.favoritesCount"
+            />
+          </div>
         </div>
         <router-link
           :to="{name: 'article', params: {slug: article.slug}}"
@@ -59,6 +65,7 @@ import {stringify, parseUrl} from 'query-string'
 import MbvLoading from '@/components/Loading'
 import MbvErrorMessage from '@/components/ErrorMessage'
 import MbvTagList from '@/components/TagList'
+import MbvAddToFavorites from '@/components/AddToFavorites'
 
 export default {
   name: 'MbvFeed',
@@ -72,7 +79,8 @@ export default {
     MbvPagination,
     MbvLoading,
     MbvErrorMessage,
-    MbvTagList
+    MbvTagList,
+    MbvAddToFavorites
   },
   data() {
     return {
