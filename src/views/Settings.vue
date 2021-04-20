@@ -77,7 +77,6 @@ import {
   getterTypes as authGetterTypes,
   actionsTypes as authActionsTypes
 } from '@/store/types/auth'
-
 import MbvValidationErrors from '@/components/ValidationErrors'
 
 export default {
